@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MassTransit" Version="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
+    <ProjectReference Include="..\QuestionAnswer.DataAccess\QuestionAnswer.DataAccess.csproj" />
+    <ProjectReference Include="..\QuestionAnswer.Entities\QuestionAnswer.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
