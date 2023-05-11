@@ -1,0 +1,180 @@
+version: "3.8"
+services:
+  childdb:
+    container_name: childdb
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - childdb_volume:/data/db
+  childparentsdb:
+    container_name: ChildParentsDb
+    restart: always
+    ports:
+      - "27020:27017"
+    volumes:
+      - childparentsdb_volume:/data/db
+  childsiblingsdb:
+    container_name: ChildSiblingsDb
+    restart: always
+    ports:
+      - 27022:27017
+    volumes:
+      - childsiblingsdb_volume:/data/db
+  genderdb:
+    container_name: GenderDb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - genderdb_volume:/data/db
+  questiondb:
+    container_name: QuestionDb
+    restart: always
+    ports:
+      - "27024:27017"
+    volumes:
+      - questiondb_volume:/data/db
+  questionanswerdb:
+    container_name: QuestionAnswerDb
+    restart: always
+    ports:
+      - "27025:27017"
+    volumes:
+      - questionanswerdb_volume:/data/db
+  questiontitledb:
+    container_name: QuestionTitleDb
+    restart: always
+    ports:
+      - "27023:27017"
+    volumes:
+      - questiontitledb_volume:/data/db
+  educationstatusdb:
+    container_name: EducationStatusDb
+    restart: always
+    ports:
+      - "27021:27017"
+    volumes:
+      - educationstatusdb_volume:/data/db
+  childmaterializedviewdb:
+    container_name: ChildMaterializedViewDb
+    restart: always
+    user: root
+    ports:
+      - "1433:1433"
+    volumes:
+      - childmaterializedview_volume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password12*
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=123456
+  child.api:
+    container_name: ChildAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - MongoDbConnectionSettings:ConnectionString=mongodb://childdb:27017
+
+    depends_on:
+      - childdb
+    ports:
+      - "5106:80"
+      - "7106:80"
+  childmaterializedview.api:
+    container_name: ChildMaterializedViewAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - "ConnectionStrings:SQLConnectionString=Server=childmaterializedviewdb,1433;Database=ChildMaterializedView2;User=sa;Password=Password12*"
+    depends_on:
+      - childmaterializedviewdb
+    ports:
+      - "5135:80"
+  gender.api:
+    container_name: GenderAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - MongoDbConnectionSettings:ConnectionString=mongodb://genderdb:27017
+    depends_on:
+      - genderdb
+    ports:
+      - "5165:80"
+      - "7165:80"
+  childparents.api:
+    container_name: ChildParentsAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - MongoDbConnectionSettings:ConnectionString=mongodb://childparentsdb:27017
+    depends_on:
+      - childparentsdb
+    ports:
+      - "7103:80"
+      - "5103:80"
+  questiontitle.api:
+    container_name: QuestionTitleAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - MongoDbConnectionSettings:ConnectionString=mongodb://questiontitledb:27017
+    depends_on:
+      - questiontitledb
+    ports:
+      - "7013:80"
+      - "5013:80"
+  questionanswer.api:
+    container_name: QuestionAnswerAPI
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQUrl=rabbitmq
+      - MongoDbConnectionSettings:ConnectionString=mongodb://questionanswerdb:27017
+    depends_on:
+      - questionanswerdb
+    ports:
+      - "7076:80"
+      - "5076:80"
+  childsiblings.api:
+    container_name: ChildSiblingsAPI
+    restart: always
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.data.mongodb.uri=mongodb://childsiblingsdb:27017
+    ports:
+      - 8000:8000
+    depends_on:
+      - childsiblingsdb   
+  educationstatus.api:
+    container_name: EducationStatusAPI
+    restart: always
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.data.mongodb.uri=mongodb://educationstatusdb:27017
+    ports:
+      - 8001:8001
+    depends_on:
+      - educationstatusdb    
+  question.api:
+     container_name: QuestionAPI 
+     restart: always
+     environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.data.mongodb.uri=mongodb://questiondb:27017
+     ports:
+      - 8002:8002
+     depends_on:
+     - questiondb    

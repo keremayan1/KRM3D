@@ -1,0 +1,78 @@
+version: "3"
+services:
+  childdb:
+    image: mongo
+  childparentsdb:
+    image: mongo
+  childsiblingsdb:
+    image: mongo
+  genderdb:
+    image: mongo
+  questiondb: 
+    image: mongo
+  questionanswerdb:
+    image: mongo
+  questiontitledb:
+    image: mongo    
+  educationstatusdb:
+    image: mongo
+  childmaterializedviewdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest  
+  rabbitmq:
+    image: rabbitmq:3-management
+  child.api:
+    image: ${DOCKER_REGISTRY-}childapi
+    build: 
+      context: .
+      dockerfile: src/projects/Child/Child.WebAPI/Dockerfile
+  childmaterializedview.api:
+    image: childmaterializedview_api_image
+    build: 
+      context: .
+      dockerfile: src/projects/ChildMaterializedView/WebAPI/Dockerfile
+  gender.api:
+    image: gender_api_image
+    build:
+      context: .
+      dockerfile: src/projects/Gender/Gender.WebAPI/Dockerfile    
+  childparents.api:
+     image: ${DOCKER_REGISTRY-}childparents.api
+     build:
+      context: .
+      dockerfile: src/projects/ChildParents/ChildParents.WebAPI/Dockerfile
+  questiontitle.api:
+    image: ${DOCKER_REGISTRY-}questiontitle.api
+    build: 
+      context: .
+      dockerfile: src/projects/QuestionTitle/QuestionTitle.WebAPI/Dockerfile
+  questionanswer.api:
+    image: ${DOCKER_REGISTRY-}questionanswer.api
+    build: 
+      context: .
+      dockerfile: src/projects/QuestionAnswer/QuestionAnswer.WebAPI/Dockerfile
+  childsiblings.api:
+    image: ${DOCKER_REGISTRY-}childsiblings.api
+    build: 
+      context: .
+      dockerfile: src\projects\childSiblings\Dockerfile
+  educationstatus.api:
+    image: ${DOCKER_REGISTRY-}educationstatus.api
+    build: 
+      context: .
+      dockerfile: src\projects\educationStatus\Dockerfile
+  question.api:
+     image: ${DOCKER_REGISTRY-}question.api    
+     build:
+      context: .
+      dockerfile: src\projects\question\Dockerfile
+    
+volumes:
+  childdb_volume:
+  childparentsdb_volume:  
+  childsiblingsdb_volume:
+  genderdb_volume:
+  questiondb_volume:
+  questionanswerdb_volume:
+  questiontitledb_volume:
+  educationstatusdb_volume:
+  childmaterializedview_volume:  
