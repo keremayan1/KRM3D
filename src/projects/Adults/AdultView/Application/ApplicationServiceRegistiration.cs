@@ -4,6 +4,7 @@ using Application.Features.AdultMother.Consumers;
 using Application.Features.AdultSiblings.Consumers;
 using Application.Features.EducationStatus.Consumers;
 using Application.Features.Gender.Consumers;
+using Application.Features.MarriedStatus.Consumers;
 using Application.Features.Question.Consumers;
 using Application.Features.QuestionAnswer.Consumers;
 using Application.Features.QuestionTitle.Consumers;
@@ -77,6 +78,11 @@ namespace Application
                 x.AddConsumer<CreateAdultSiblingsMessageConsumer>();
                 x.AddConsumer<UpdateAdultSiblingsMessageConsumer>();
                 x.AddConsumer<DeleteAdultSiblingsMessageConsumer>();
+
+                //MarriedStatus
+                x.AddConsumer<CreateAdultMarriedStatusMessageConsumer>();
+                x.AddConsumer<UpdateAdultMarriedStatusMessageConsumer>();
+                x.AddConsumer<DeleteAdultMarriedStatusMessageConsumer>();
 
                 x.UsingRabbitMq((context, config) =>
                 {
@@ -236,6 +242,22 @@ namespace Application
                     {
                         e.Bind("deleteAdultFamilySiblings");
                         e.ConfigureConsumer<DeleteAdultSiblingsMessageConsumer>(context);
+                    });
+                    //MarriedStatus
+                    config.ReceiveEndpoint("create-married-status-queue", e =>
+                    {
+                        e.Bind("createMarriedStatus");
+                        e.ConfigureConsumer<CreateAdultMarriedStatusMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-married-status-queue", e =>
+                    {
+                        e.Bind("updateMarriedStatus");
+                        e.ConfigureConsumer<UpdateAdultMarriedStatusMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-married-status-queue", e =>
+                    {
+                        e.Bind("deleteMarriedStatus");
+                        e.ConfigureConsumer<DeleteAdultMarriedStatusMessageConsumer>(context);
                     });
                 });
             });

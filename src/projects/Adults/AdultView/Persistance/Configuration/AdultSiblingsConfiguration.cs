@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistance.Configuration
 {
-    public class AdultFatherConfiguration : IEntityTypeConfiguration<AdultFatherModelView>
+    public class AdultSiblingsConfiguration : IEntityTypeConfiguration<AdultSiblingsModelView>
     {
-        public void Configure(EntityTypeBuilder<AdultFatherModelView> builder)
+        public void Configure(EntityTypeBuilder<AdultSiblingsModelView> builder)
         {
-            builder.ToTable("adult_father").HasKey(x => x._id);
+            builder.ToTable("adult_siblings").HasKey(x => x._id);
             builder.Property(x => x._id).HasColumnName("id").ValueGeneratedNever();
             builder.Property(x => x.EducationStatusId).HasColumnName("education_status_id");
+            builder.Property(x => x.GenderId).HasColumnName("gender_id");
             builder.Property(x => x.FirstName).HasColumnName("first_name");
             builder.Property(x => x.LastName).HasColumnName("last_name");
             builder.Property(x => x.Age).HasColumnName("age");

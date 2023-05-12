@@ -18,6 +18,7 @@ namespace Persistance.Contexts
         public DbSet<AdultFatherModelView> AdultFathers { get; set; }
         public DbSet<AdultMotherModelView> AdultMothers { get; set; }
         public DbSet<AdultSiblingsModelView> AdultSiblings { get; set; }
+        public DbSet<AdultMarriedStatusModelView> AdultMarriedStatuses { get; set; }
         public DbSet<AdultEducationStatusModelView> AdultEducationStatuses { get; set; }
         public DbSet<AdultGenderModelView> AdultGenders { get; set; }
         public DbSet<AdultQuestionTitleModelView> AdultQuestionTitles { get; set; }
