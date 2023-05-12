@@ -1,4 +1,5 @@
 ﻿using Application.Features.Adult.Consumers;
+using Application.Features.EducationStatus.Consumers;
 using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -25,10 +26,15 @@ namespace Application
         {
            services.AddMassTransit(x =>
             {
+                //Adult
                 x.AddConsumer<CreateAdultMessageConsumer>();
                 x.AddConsumer<UpdateAdultMessageConsumer>();
                 x.AddConsumer<DeleteAdultMessageConsumer>();
 
+                //EducationStatus
+                x.AddConsumer<CreateEducationStatusMessageConsumer>();
+                x.AddConsumer<UpdateEducationStatusMessageConsumer>();
+                x.AddConsumer<DeleteEducationStatusMessageConsumer>();
                 x.UsingRabbitMq((context, config) =>
                 {
                     config.Host(configuration["RabbitMQUrl"], "/", host =>
@@ -37,6 +43,8 @@ namespace Application
                         host.Password("123456");
                     });
                     config.UseRawJsonSerializer();
+                    
+                    //Adult
                     config.ReceiveEndpoint("create-adult-queue", e =>
                     {
                         e.Bind("createAdult");
@@ -52,7 +60,23 @@ namespace Application
                         e.Bind("deleteAdult");
                         e.ConfigureConsumer<DeleteAdultMessageConsumer>(context);
                     });
-                    
+
+                    //EducationStatus
+                    config.ReceiveEndpoint("create-adult-education-status-queue", e =>
+                    {
+                        e.Bind("createEducationStatus");
+                        e.ConfigureConsumer<CreateEducationStatusMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-education-status-queue", e =>
+                    {
+                        e.Bind("updateEducationStatus");
+                        e.ConfigureConsumer<UpdateEducationStatusMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-education-status-queue", e =>
+                    {
+                        e.Bind("deleteEducationStatus");
+                        e.ConfigureConsumer<DeleteEducationStatusMessageConsumer>(context);
+                    });
                 });
             });
             return services;
