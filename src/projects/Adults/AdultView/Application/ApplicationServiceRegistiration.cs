@@ -1,5 +1,6 @@
 ﻿using Application.Features.Adult.Consumers;
 using Application.Features.EducationStatus.Consumers;
+using Application.Features.Gender.Consumers;
 using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,11 @@ namespace Application
                 x.AddConsumer<CreateEducationStatusMessageConsumer>();
                 x.AddConsumer<UpdateEducationStatusMessageConsumer>();
                 x.AddConsumer<DeleteEducationStatusMessageConsumer>();
+
+                //AdultGender
+                x.AddConsumer<CreateAdultGenderMessageConsumer>();
+                x.AddConsumer<UpdateAdultGenderMessageConsumer>();
+                x.AddConsumer<DeleteAdultGenderMessageConsumer>();
                 x.UsingRabbitMq((context, config) =>
                 {
                     config.Host(configuration["RabbitMQUrl"], "/", host =>
@@ -76,6 +82,23 @@ namespace Application
                     {
                         e.Bind("deleteEducationStatus");
                         e.ConfigureConsumer<DeleteEducationStatusMessageConsumer>(context);
+                    });
+
+                    //AdultGender
+                    config.ReceiveEndpoint("create-adult-gender-queue", e =>
+                    {
+                       
+                        e.ConfigureConsumer<CreateAdultGenderMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-gender-queue", e =>
+                    {
+                       
+                        e.ConfigureConsumer<UpdateAdultGenderMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-gender-queue", e =>
+                    {
+                       
+                        e.ConfigureConsumer<DeleteAdultGenderMessageConsumer>(context);
                     });
                 });
             });

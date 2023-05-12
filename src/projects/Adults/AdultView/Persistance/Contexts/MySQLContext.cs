@@ -16,6 +16,7 @@ namespace Persistance.Contexts
         public IConfiguration Configuration { get; set; }
         public DbSet<AdultModelView> Adults { get; set; }
         public DbSet<AdultEducationStatusModelView> AdultEducationStatuses { get; set; }
+        public DbSet<AdultGenderModelView> AdultGenders { get; set; }
 
         public MySQLContext(DbContextOptions dbContextOptions,IConfiguration configuration):base(dbContextOptions)
         {

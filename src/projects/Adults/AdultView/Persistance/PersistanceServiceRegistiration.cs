@@ -17,6 +17,7 @@ namespace Persistance
             services.AddDbContext<MySQLContext>();
             services.AddScoped<IAdultModelViewRepository, AdultModelViewRepository>();
             services.AddScoped<IAdultEducationStatusModelViewRepository, AdultEducationStatusModelViewRepository>();
+            services.AddScoped<IAdultGenderModelViewRepository, AdultGenderModelViewRepository>();
             return services;
         }
     }

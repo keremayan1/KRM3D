@@ -29,9 +29,6 @@ namespace Persistance.Configuration
             builder.Property(x => x.DidSheHeComeWith).HasColumnName("did_she_he_come_with");
             builder.Property(x => x.PersonComesFromHere).HasColumnName("person_comes_from_here");
             builder.Property(x => x.ReasonOfApplication).HasColumnName("reason_of_application");
-
-            builder.HasOne(x => x.EducationStatus).WithOne().HasForeignKey<AdultModelView>(x=>x.EducationStatusId);
-            
         }
     }
 }

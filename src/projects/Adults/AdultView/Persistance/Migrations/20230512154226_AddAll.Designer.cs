@@ -11,8 +11,8 @@ using Persistance.Contexts;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20230512145823_addEducationStatus")]
-    partial class addEducationStatus
+    [Migration("20230512154226_AddAll")]
+    partial class AddAll
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,22 @@ namespace Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("adult_education_status", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.AdultGenderModelView", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("id");
+
+                    b.Property<string>("GenderName")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("gender_name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("adult_gender", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.AdultModelView", b =>
@@ -114,8 +130,7 @@ namespace Persistance.Migrations
 
                     b.HasKey("_id");
 
-                    b.HasIndex("EducationStatusId")
-                        .IsUnique();
+                    b.HasIndex("EducationStatusId");
 
                     b.ToTable("adults", (string)null);
                 });
@@ -123,8 +138,8 @@ namespace Persistance.Migrations
             modelBuilder.Entity("Domain.Entities.AdultModelView", b =>
                 {
                     b.HasOne("Domain.Entities.AdultEducationStatusModelView", "EducationStatus")
-                        .WithOne()
-                        .HasForeignKey("Domain.Entities.AdultModelView", "EducationStatusId")
+                        .WithMany()
+                        .HasForeignKey("EducationStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
