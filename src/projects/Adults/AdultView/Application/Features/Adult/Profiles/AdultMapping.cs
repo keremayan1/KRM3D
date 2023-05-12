@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using Core.Tools.RabbitMQ.Messages.Adults.Adult;
+﻿using Application.Features.Adult.Messages.Adult;
+using AutoMapper;
+
 using Domain.Entities;
 
 namespace Application.Features.Adult.Profiles

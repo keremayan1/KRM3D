@@ -1,6 +1,7 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.Adult.Messages.Adult;
+using Application.Services.Repositories;
 using AutoMapper;
-using Core.Tools.RabbitMQ.Messages.Adults.Adult;
+
 using Domain.Entities;
 using MassTransit;
 using System;
