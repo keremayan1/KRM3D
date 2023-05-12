@@ -1,6 +1,7 @@
 ﻿using Application.Features.Adult.Consumers;
 using Application.Features.EducationStatus.Consumers;
 using Application.Features.Gender.Consumers;
+using Application.Features.Question.Consumers;
 using Application.Features.QuestionTitle.Consumers;
 using MassTransit;
 using MediatR;
@@ -48,6 +49,10 @@ namespace Application
                 x.AddConsumer<UpdateAdultQuestionTitleMessageConsumer>(); 
                 x.AddConsumer<DeleteAdultQuestionTitleMessageConsumer>();
 
+                //AdultQuestion
+                x.AddConsumer<CreateAdultQuestionMessageConsumer>();
+                x.AddConsumer<UpdateAdultQuestionMessageConsumer>();
+                x.AddConsumer<DeleteAdultQuestionMessageConsumer>();
 
                 x.UsingRabbitMq((context, config) =>
                 {
@@ -123,6 +128,23 @@ namespace Application
                     {
                         e.Bind("deleteAdultQuestionTitle");
                         e.ConfigureConsumer<DeleteAdultQuestionTitleMessageConsumer>(context);
+                    });
+
+                    //AdultQuestion
+                    config.ReceiveEndpoint("create-adult-question-queue", e =>
+                    {
+                        e.Bind("createAdultQuestion");
+                        e.ConfigureConsumer<CreateAdultQuestionMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-question-queue", e =>
+                    {
+                        e.Bind("updateAdultQuestion");
+                        e.ConfigureConsumer<UpdateAdultQuestionMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-question-queue", e =>
+                    {
+                        e.Bind("deleteAdultQuestion");
+                        e.ConfigureConsumer<DeleteAdultQuestionMessageConsumer>(context);
                     });
                 });
             });

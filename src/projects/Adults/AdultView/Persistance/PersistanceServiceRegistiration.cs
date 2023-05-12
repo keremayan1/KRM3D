@@ -19,6 +19,7 @@ namespace Persistance
             services.AddScoped<IAdultEducationStatusModelViewRepository, AdultEducationStatusModelViewRepository>();
             services.AddScoped<IAdultGenderModelViewRepository, AdultGenderModelViewRepository>();
             services.AddScoped<IAdultQuestionTitleModelViewRepository, AdultQuestionTitleModelViewRepository>();
+            services.AddScoped<IAdultQuestionModelViewRepository, AdultQuestionModelViewRepository>();
             return services;
         }
     }

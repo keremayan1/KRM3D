@@ -10,10 +10,11 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/adultquestionservice/")
+@RequestMapping("/api/adultquestion/")
 public class AdultQuestionServicesController {
     private AdultQuestionService adultQuestionService;
     @Autowired
@@ -21,7 +22,7 @@ public class AdultQuestionServicesController {
         this.adultQuestionService = adultQuestionService;
     }
     @PostMapping(value = "add")
-    public ResponseEntity<CreatedAdultQuestionDto> add(@RequestBody CreatedAdultQuestionDto createdAdultQuestionDto){
+    public ResponseEntity<CreatedAdultQuestionDto> add(@RequestBody @Valid CreatedAdultQuestionDto createdAdultQuestionDto){
         var result = this.adultQuestionService.add(createdAdultQuestionDto);
         return  ResponseEntity.ok(result);
     }
@@ -31,7 +32,7 @@ public class AdultQuestionServicesController {
         return  ResponseEntity.ok(result);
     }
     @PutMapping(value = "update")
-    public ResponseEntity<UpdatedAdultQuestionDto> add(@RequestBody UpdatedAdultQuestionDto updatedAdultQuestionDto){
+    public ResponseEntity<UpdatedAdultQuestionDto> add(@RequestBody @Valid UpdatedAdultQuestionDto updatedAdultQuestionDto){
         var result = this.adultQuestionService.update(updatedAdultQuestionDto);
         return  ResponseEntity.ok(result);
     }
