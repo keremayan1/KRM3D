@@ -2,6 +2,7 @@
 using Application.Features.EducationStatus.Consumers;
 using Application.Features.Gender.Consumers;
 using Application.Features.Question.Consumers;
+using Application.Features.QuestionAnswer.Consumers;
 using Application.Features.QuestionTitle.Consumers;
 using MassTransit;
 using MediatR;
@@ -53,6 +54,11 @@ namespace Application
                 x.AddConsumer<CreateAdultQuestionMessageConsumer>();
                 x.AddConsumer<UpdateAdultQuestionMessageConsumer>();
                 x.AddConsumer<DeleteAdultQuestionMessageConsumer>();
+
+                //AdultQuestionAnswer
+                x.AddConsumer<CreateAdultQuestionAnswerMessageConsumer>();
+                x.AddConsumer<UpdateAdultQuestionAnswerMessageConsumer>();
+                x.AddConsumer<DeleteAdultQuestionAnswerMessageConsumer>();
 
                 x.UsingRabbitMq((context, config) =>
                 {
@@ -145,6 +151,23 @@ namespace Application
                     {
                         e.Bind("deleteAdultQuestion");
                         e.ConfigureConsumer<DeleteAdultQuestionMessageConsumer>(context);
+                    });
+
+                    //AdultQuestionAnswer
+                    config.ReceiveEndpoint("create-adult-question-answer-queue", e =>
+                    {
+                        e.Bind("createAdultQuestionAnswer");
+                        e.ConfigureConsumer<CreateAdultQuestionAnswerMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-question-answer-queue", e =>
+                    {
+                        e.Bind("updateAdultQuestionAnswer");
+                        e.ConfigureConsumer<UpdateAdultQuestionAnswerMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-question-answer-queue", e =>
+                    {
+                        e.Bind("deleteAdultQuestionAnswer");
+                        e.ConfigureConsumer<DeleteAdultQuestionAnswerMessageConsumer>(context);
                     });
                 });
             });

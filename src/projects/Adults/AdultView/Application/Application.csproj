@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\QuestionAnswer\DTOs\" />
     <Folder Include="Features\Question\DTOs\" />
   </ItemGroup>
 

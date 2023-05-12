@@ -7,23 +7,29 @@ import com.KRM3D.adultquestionanswerservice.services.dtos.CreatedAdultQuestionAn
 import com.KRM3D.adultquestionanswerservice.services.dtos.DeletedAdultQuestionAnswerDto;
 import com.KRM3D.adultquestionanswerservice.services.dtos.UpdatedAdultQuestionAnswerDto;
 import com.KRM3D.adultquestionanswerservice.services.rules.AdultQuestionAnswerRules;
+import com.KRM3D.adultquestionanswerservice.services.streams.AdultQuestionAnswerPublishChannel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@EnableBinding(AdultQuestionAnswerPublishChannel.class)
 public class AdultQuestionAnswerServiceImpl implements AdultQuestionAnswerService {
     private AdultQuestionAnswerRepository adultQuestionAnswerRepository;
     private ModelMapper modelMapper;
     private AdultQuestionAnswerRules adultQuestionAnswerRules;
+    private AdultQuestionAnswerPublishChannel adultQuestionAnswerPublishChannel;
 
     @Autowired
-    public AdultQuestionAnswerServiceImpl(AdultQuestionAnswerRepository adultQuestionAnswerRepository, ModelMapper modelMapper, AdultQuestionAnswerRules adultQuestionAnswerRules) {
+    public AdultQuestionAnswerServiceImpl(AdultQuestionAnswerRepository adultQuestionAnswerRepository, ModelMapper modelMapper, AdultQuestionAnswerRules adultQuestionAnswerRules, AdultQuestionAnswerPublishChannel adultQuestionAnswerPublishChannel) {
         this.adultQuestionAnswerRepository = adultQuestionAnswerRepository;
         this.modelMapper = modelMapper;
         this.adultQuestionAnswerRules = adultQuestionAnswerRules;
+        this.adultQuestionAnswerPublishChannel = adultQuestionAnswerPublishChannel;
     }
 
     @Override
@@ -33,6 +39,7 @@ public class AdultQuestionAnswerServiceImpl implements AdultQuestionAnswerServic
             this.adultQuestionAnswerRules.DoToUpper(mappedAdultQuestionAnswer);
             this.adultQuestionAnswerRules.DoToTrim(mappedAdultQuestionAnswer);
             this.adultQuestionAnswerRepository.save(mappedAdultQuestionAnswer);
+            this.adultQuestionAnswerPublishChannel.createOutputChannel().send(MessageBuilder.withPayload(mappedAdultQuestionAnswer).build());
 
         }
         return createdAdultQuestionAnswer;
@@ -46,6 +53,7 @@ public class AdultQuestionAnswerServiceImpl implements AdultQuestionAnswerServic
         this.adultQuestionAnswerRules.DoToUpper(mappedAdultQuestionAnswer);
         this.adultQuestionAnswerRules.DoToTrim(mappedAdultQuestionAnswer);
         this.adultQuestionAnswerRepository.save(mappedAdultQuestionAnswer);
+        this.adultQuestionAnswerPublishChannel.updateOutputChannel().send(MessageBuilder.withPayload(mappedAdultQuestionAnswer).build());
         return  updatedAdultQuestionAnswerDto;
     }
 
@@ -53,6 +61,7 @@ public class AdultQuestionAnswerServiceImpl implements AdultQuestionAnswerServic
     public DeletedAdultQuestionAnswerDto delete(String id) {
       var getId = this.adultQuestionAnswerRepository.findById(id).get();
       this.adultQuestionAnswerRepository.delete(getId);
+      this.adultQuestionAnswerPublishChannel.deleteOutputChannel().send(MessageBuilder.withPayload(getId).build());
       var result = this.modelMapper.map(getId,DeletedAdultQuestionAnswerDto.class);
       return  result;
     }

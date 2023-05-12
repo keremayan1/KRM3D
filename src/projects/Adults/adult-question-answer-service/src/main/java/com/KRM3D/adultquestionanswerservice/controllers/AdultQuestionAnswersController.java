@@ -5,10 +5,13 @@ import com.KRM3D.adultquestionanswerservice.services.AdultQuestionAnswerService;
 import com.KRM3D.adultquestionanswerservice.services.dtos.CreatedAdultQuestionAnswerDto;
 import com.KRM3D.adultquestionanswerservice.services.dtos.DeletedAdultQuestionAnswerDto;
 import com.KRM3D.adultquestionanswerservice.services.dtos.UpdatedAdultQuestionAnswerDto;
+
+import com.KRM3D.adultquestionanswerservice.services.validation.ValidateRequestBodyList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,9 +23,10 @@ public class AdultQuestionAnswersController {
         this.adultQuestionAnswerService = adultQuestionAnswerService;
     }
     @PostMapping(value = "add")
-    public ResponseEntity<List<CreatedAdultQuestionAnswerDto>> add(@RequestBody List<CreatedAdultQuestionAnswerDto> adultQuestionAnswer){
-        var result = this.adultQuestionAnswerService.addAll(adultQuestionAnswer);
-        return  ResponseEntity.ok(result);
+    public ResponseEntity<List<CreatedAdultQuestionAnswerDto>> add(@RequestBody @Valid ValidateRequestBodyList<CreatedAdultQuestionAnswerDto> adultQuestionAnswer){
+       var result= adultQuestionAnswer.getRequestBody();
+        var response = this.adultQuestionAnswerService.addAll(result);
+        return  ResponseEntity.ok(response);
     }
     @PutMapping(value = "update")
     public ResponseEntity<UpdatedAdultQuestionAnswerDto> add(@RequestBody UpdatedAdultQuestionAnswerDto adultQuestionAnswer){
