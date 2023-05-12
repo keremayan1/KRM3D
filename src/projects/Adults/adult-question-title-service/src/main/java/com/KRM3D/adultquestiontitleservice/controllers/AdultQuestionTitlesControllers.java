@@ -7,6 +7,8 @@ import com.KRM3D.adultquestiontitleservice.services.dto.UpdatedAdultQuestionTitl
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("api/adultquestiontitle/")
 public class AdultQuestionTitlesControllers {
@@ -16,12 +18,12 @@ public class AdultQuestionTitlesControllers {
         this.adultQuestionTitleService = adultQuestionTitleService;
     }
     @PostMapping(value = "add")
-    public ResponseEntity<CreatedAdultQuestionTitleDto> add(@RequestBody CreatedAdultQuestionTitleDto adultQuestionTitleDto){
+    public ResponseEntity<CreatedAdultQuestionTitleDto> add(@RequestBody @Valid CreatedAdultQuestionTitleDto adultQuestionTitleDto){
         var result = this.adultQuestionTitleService.add(adultQuestionTitleDto);
         return  ResponseEntity.ok(result);
     }
     @PutMapping(value = "update")
-    public ResponseEntity<UpdatedAdultQuestionTitleDto> update(@RequestBody UpdatedAdultQuestionTitleDto adultQuestionTitleDto){
+    public ResponseEntity<UpdatedAdultQuestionTitleDto> update(@RequestBody @Valid UpdatedAdultQuestionTitleDto adultQuestionTitleDto){
         var result = this.adultQuestionTitleService.update(adultQuestionTitleDto);
         return  ResponseEntity.ok(result);
     }

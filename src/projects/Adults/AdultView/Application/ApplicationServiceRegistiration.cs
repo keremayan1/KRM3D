@@ -1,6 +1,7 @@
 ﻿using Application.Features.Adult.Consumers;
 using Application.Features.EducationStatus.Consumers;
 using Application.Features.Gender.Consumers;
+using Application.Features.QuestionTitle.Consumers;
 using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,13 @@ namespace Application
                 x.AddConsumer<CreateAdultGenderMessageConsumer>();
                 x.AddConsumer<UpdateAdultGenderMessageConsumer>();
                 x.AddConsumer<DeleteAdultGenderMessageConsumer>();
+
+                //AdultQuestionTitle
+                x.AddConsumer<CreateAdultQuestionTitleMessageConsumer>();
+                x.AddConsumer<UpdateAdultQuestionTitleMessageConsumer>(); 
+                x.AddConsumer<DeleteAdultQuestionTitleMessageConsumer>();
+
+
                 x.UsingRabbitMq((context, config) =>
                 {
                     config.Host(configuration["RabbitMQUrl"], "/", host =>
@@ -97,8 +105,24 @@ namespace Application
                     });
                     config.ReceiveEndpoint("delete-adult-gender-queue", e =>
                     {
-                       
                         e.ConfigureConsumer<DeleteAdultGenderMessageConsumer>(context);
+                    });
+
+                    //AdultQuestionTitle
+                    config.ReceiveEndpoint("create-adult-question-title-queue", e =>
+                    {
+                        e.Bind("createAdultQuestionTitle");
+                        e.ConfigureConsumer<CreateAdultQuestionTitleMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-question-title-queue", e =>
+                    {
+                        e.Bind("updateAdultQuestionTitle");
+                        e.ConfigureConsumer<UpdateAdultQuestionTitleMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-question-title-queue", e =>
+                    {
+                        e.Bind("deleteAdultQuestionTitle");
+                        e.ConfigureConsumer<DeleteAdultQuestionTitleMessageConsumer>(context);
                     });
                 });
             });
