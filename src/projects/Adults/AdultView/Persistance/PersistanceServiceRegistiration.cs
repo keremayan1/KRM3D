@@ -21,6 +21,9 @@ namespace Persistance
             services.AddScoped<IAdultQuestionTitleModelViewRepository, AdultQuestionTitleModelViewRepository>();
             services.AddScoped<IAdultQuestionModelViewRepository, AdultQuestionModelViewRepository>();
             services.AddScoped<IAdultQuestionAnswerModelViewRepository, AdultQuestionAnswerModelViewRepository>();
+            services.AddScoped<IAdultFatherModelViewRepository, AdultFatherModelViewRepository>();
+            services.AddScoped<IAdultMotherModelViewRepository, AdultMotherModelViewRepository>();
+            services.AddScoped<IAdultSiblingsModelViewRepository, AdultSiblingsModelViewRepository>();
             return services;
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistance.Contexts;
 
@@ -10,9 +11,10 @@ using Persistance.Contexts;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20230512193442_addAdultFamilyFather")]
+    partial class addAdultFamilyFather
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,10 +58,10 @@ namespace Persistance.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("first_name");
 
-                    b.Property<string>("HowManyChildHave")
+                    b.Property<string>("HowManyChildrenHave")
                         .IsRequired()
                         .HasColumnType("longtext")
-                        .HasColumnName("how_many_child_have");
+                        .HasColumnName("how_many_children_have");
 
                     b.Property<string>("IsLiveWith")
                         .IsRequired()
@@ -184,57 +186,6 @@ namespace Persistance.Migrations
                     b.ToTable("adults", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.AdultMotherModelView", b =>
-                {
-                    b.Property<string>("_id")
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("age");
-
-                    b.Property<string>("EducationStatusId")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("education_status_id");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("first_name");
-
-                    b.Property<string>("HowManyChildHave")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("how_many_child_have");
-
-                    b.Property<string>("IsLiveWith")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("is_live_with");
-
-                    b.Property<string>("Job")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("job");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("TelephoneNumber")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("telephone_number");
-
-                    b.HasKey("_id");
-
-                    b.ToTable("adult_mother", (string)null);
-                });
-
             modelBuilder.Entity("Domain.Entities.AdultQuestionAnswerModelView", b =>
                 {
                     b.Property<string>("_id")
@@ -291,62 +242,6 @@ namespace Persistance.Migrations
                     b.HasKey("_id");
 
                     b.ToTable("adult_question_title", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.AdultSiblingsModelView", b =>
-                {
-                    b.Property<string>("_id")
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("age");
-
-                    b.Property<string>("EducationStatusId")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("education_status_id");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("first_name");
-
-                    b.Property<string>("GenderId")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("gender_id");
-
-                    b.Property<string>("HowManyChildHave")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("how_many_child_have");
-
-                    b.Property<string>("IsLiveWith")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("is_live_with");
-
-                    b.Property<string>("Job")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("job");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("TelephoneNumber")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("telephone_number");
-
-                    b.HasKey("_id");
-
-                    b.ToTable("adult_siblings", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.AdultModelView", b =>

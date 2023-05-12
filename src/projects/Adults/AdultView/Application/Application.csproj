@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AdultFather\DTOs\" />
+    <Folder Include="Features\AdultMother\DTOs\" />
+    <Folder Include="Features\AdultSiblings\DTOs\" />
     <Folder Include="Features\QuestionAnswer\DTOs\" />
     <Folder Include="Features\Question\DTOs\" />
   </ItemGroup>

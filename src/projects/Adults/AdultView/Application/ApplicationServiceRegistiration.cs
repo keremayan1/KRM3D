@@ -1,4 +1,7 @@
 ﻿using Application.Features.Adult.Consumers;
+using Application.Features.AdultFather.Consumers;
+using Application.Features.AdultMother.Consumers;
+using Application.Features.AdultSiblings.Consumers;
 using Application.Features.EducationStatus.Consumers;
 using Application.Features.Gender.Consumers;
 using Application.Features.Question.Consumers;
@@ -59,6 +62,21 @@ namespace Application
                 x.AddConsumer<CreateAdultQuestionAnswerMessageConsumer>();
                 x.AddConsumer<UpdateAdultQuestionAnswerMessageConsumer>();
                 x.AddConsumer<DeleteAdultQuestionAnswerMessageConsumer>();
+
+                //AdultFather
+                x.AddConsumer<CreateAdultFatherMessageConsumer>();
+                x.AddConsumer<UpdateAdultFatherMessageConsumer>();
+                x.AddConsumer<DeleteAdultFatherMessageConsumer>();
+
+                //AdultMother
+                x.AddConsumer<CreateAdultMotherMessageConsumer>();
+                x.AddConsumer<UpdateAdultMotherMessageConsumer>();
+                x.AddConsumer<DeleteAdultMotherMessageConsumer>();
+
+                //AdultSiblings
+                x.AddConsumer<CreateAdultSiblingsMessageConsumer>();
+                x.AddConsumer<UpdateAdultSiblingsMessageConsumer>();
+                x.AddConsumer<DeleteAdultSiblingsMessageConsumer>();
 
                 x.UsingRabbitMq((context, config) =>
                 {
@@ -168,6 +186,56 @@ namespace Application
                     {
                         e.Bind("deleteAdultQuestionAnswer");
                         e.ConfigureConsumer<DeleteAdultQuestionAnswerMessageConsumer>(context);
+                    });
+
+                    //AdultFather
+                    config.ReceiveEndpoint("create-adult-father-queue", e =>
+                    {
+                        e.Bind("createAdultFamilyFather");
+                        e.ConfigureConsumer<CreateAdultFatherMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-father-queue", e =>
+                    {
+                        e.Bind("updateAdultFamilyFather");
+                        e.ConfigureConsumer<UpdateAdultFatherMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-father-queue", e =>
+                    {
+                        e.Bind("deleteAdultFamilyFather");
+                        e.ConfigureConsumer<DeleteAdultFatherMessageConsumer>(context);
+                    });
+
+                    //AdultMother
+                    config.ReceiveEndpoint("create-adult-mother-queue", e =>
+                    {
+                        e.Bind("createAdultFamilyMother");
+                        e.ConfigureConsumer<CreateAdultMotherMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-mother-queue", e =>
+                    {
+                        e.Bind("updateAdultFamilyMother");
+                        e.ConfigureConsumer<UpdateAdultMotherMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-mother-queue", e =>
+                    {
+                        e.Bind("deleteAdultFamilyMother");
+                        e.ConfigureConsumer<DeleteAdultMotherMessageConsumer>(context);
+                    });
+                    //AdultSiblings
+                    config.ReceiveEndpoint("create-adult-siblings-queue", e =>
+                    {
+                        e.Bind("createAdultFamilySiblings");
+                        e.ConfigureConsumer<CreateAdultSiblingsMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("update-adult-siblings-queue", e =>
+                    {
+                        e.Bind("updateAdultFamilySiblings");
+                        e.ConfigureConsumer<UpdateAdultSiblingsMessageConsumer>(context);
+                    });
+                    config.ReceiveEndpoint("delete-adult-siblings-queue", e =>
+                    {
+                        e.Bind("deleteAdultFamilySiblings");
+                        e.ConfigureConsumer<DeleteAdultSiblingsMessageConsumer>(context);
                     });
                 });
             });
