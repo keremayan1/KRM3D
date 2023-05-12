@@ -51,8 +51,8 @@ public class AdultServiceImpl implements AdultService {
         var mappedAdults = this.modelMapper.map(adult, Adult.class);
         this.adultBusinessRules.SetToUpper(mappedAdults);
         this.adultBusinessRules.SetTrim(mappedAdults);
-      //  this.adultBusinessRules.VerifyNationalId(mappedAdults);
-        //this.adultBusinessRules.CheckIfNationalIdExists(mappedAdults.getNationalId());
+        this.adultBusinessRules.VerifyNationalId(mappedAdults);
+        this.adultBusinessRules.CheckIfNationalIdExists(mappedAdults.getNationalId());
         this.adultRepository.save(mappedAdults);
         this.adultPublishChannel.updateOutputChannel().send(MessageBuilder.withPayload(mappedAdults).build());
         return adult;
