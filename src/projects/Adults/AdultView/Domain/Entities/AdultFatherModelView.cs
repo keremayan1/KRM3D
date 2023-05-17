@@ -13,6 +13,9 @@ namespace Domain.Entities
         public string HowManyChildHave { get; set; }
         public string IsLiveWith { get; set; }
 
+        public virtual AdultModelView? Adult { get; set; }
+        public virtual AdultEducationStatusModelView? AdultEducationStatus { get; set; }
+
         public AdultFatherModelView()
         {
             

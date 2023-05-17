@@ -6,6 +6,7 @@ namespace Domain.Entities
     {
         public string _id { get; set; }
         public string QuestionTitleName { get; set; }
+        public virtual List<AdultQuestionModelView> AdultQuestions { get; set; }
         public AdultQuestionTitleModelView()
         {
 

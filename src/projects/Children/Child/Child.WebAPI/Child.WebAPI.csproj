@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Shared\Core.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Shared\Core.Shared.csproj" />
     <ProjectReference Include="..\Child.Application\Child.Application.csproj" />
     <ProjectReference Include="..\Child.Persistance\Child.Persistance.csproj" />
   </ItemGroup>

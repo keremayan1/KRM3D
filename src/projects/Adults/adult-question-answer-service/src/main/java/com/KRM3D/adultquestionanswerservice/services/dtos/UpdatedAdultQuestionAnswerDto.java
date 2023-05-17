@@ -13,6 +13,9 @@ public class UpdatedAdultQuestionAnswerDto {
 
     @NotBlank
     @NotNull
+    private String adultId;
+    @NotBlank
+    @NotNull
     private String questionId;
 
     @NotBlank(message = "Cevap Boş Olamaz!")

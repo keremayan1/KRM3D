@@ -10,6 +10,7 @@ namespace Persistance.Configuration
         {
             builder.ToTable("adult_mother").HasKey(x => x._id);
             builder.Property(x => x._id).HasColumnName("id").ValueGeneratedNever();
+            builder.Property(x => x.AdultId).HasColumnName("adult_id");
             builder.Property(x => x.EducationStatusId).HasColumnName("education_status_id");
             builder.Property(x => x.FirstName).HasColumnName("first_name");
             builder.Property(x => x.LastName).HasColumnName("last_name");
@@ -18,6 +19,8 @@ namespace Persistance.Configuration
             builder.Property(x => x.Job).HasColumnName("job");
             builder.Property(x => x.HowManyChildHave).HasColumnName("how_many_child_have");
             builder.Property(x => x.IsLiveWith).HasColumnName("is_live_with");
+            builder.HasOne(x => x.Adult).WithOne(x => x.AdultMother);
+            builder.HasOne(x => x.AdultEducationStatus).WithMany().HasForeignKey(x => x.EducationStatusId);
         }
     }
 }

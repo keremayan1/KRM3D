@@ -12,6 +12,9 @@ namespace Persistance.Configuration
             builder.Property(x => x._id).HasColumnName("id").ValueGeneratedNever();
             builder.Property(x => x.QuestionTitleId).HasColumnName("question_title_id");
             builder.Property(x => x.QuestionName).HasColumnName("question_name");
+
+            builder.HasOne(x => x.AdultQuestionTitle).WithMany(x=>x.AdultQuestions).HasForeignKey(x=>x.QuestionTitleId);
+            builder.HasMany(x => x.AdultQuestionAnswers);
         }
     }
 }

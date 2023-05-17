@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\..\..\..\Code\Backend\keremayan1\3DKRM\src\corePackages\Core.Persistance\Core.Persistance.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

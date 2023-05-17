@@ -5,6 +5,7 @@ namespace Domain.Entities.Abstracts
     public abstract class AdultFamilyModelView:Entity
     {
         public string _id { get; set; }
+        public string AdultId { get; set; }
         public string EducationStatusId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

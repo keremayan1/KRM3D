@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
 public class AdultQuestionAnswer {
     @Id
     private String _id;
+    private String adultId;
     private String questionId;
     private String questionAnswer;
 }

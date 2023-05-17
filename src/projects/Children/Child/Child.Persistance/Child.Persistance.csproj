@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
     <ProjectReference Include="..\Child.Application\Child.Application.csproj" />
     <ProjectReference Include="..\Child.Domain\Child.Domain.csproj" />
   </ItemGroup>

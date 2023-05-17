@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +30,14 @@ namespace Persistance.Configuration
             builder.Property(x => x.DidSheHeComeWith).HasColumnName("did_she_he_come_with");
             builder.Property(x => x.PersonComesFromHere).HasColumnName("person_comes_from_here");
             builder.Property(x => x.ReasonOfApplication).HasColumnName("reason_of_application");
+
+            builder.HasOne(x => x.AdultGender).WithMany().HasForeignKey(x=>x.GenderId);
+            builder.HasOne(x => x.EducationStatus);
+            builder.HasOne(x => x.AdultMarriedStatus).WithMany().HasForeignKey(x => x.MarriedStatusId);
+            builder.HasOne(x => x.AdultFather).WithOne(x => x.Adult).HasForeignKey<AdultFatherModelView>(x => x.AdultId);
+            builder.HasOne(x => x.AdultMother).WithOne(x => x.Adult).HasForeignKey<AdultMotherModelView>(x => x.AdultId);
+            builder.HasMany(x => x.AdultSiblings);
+            builder.HasMany(x => x.AdultQuestionAnswers);
         }
     }
 }

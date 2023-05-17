@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class UpdatedMotherDto {
     private String get_id;
+    private String adultId;
     @NotNull(message = "İsim Alanı Boş Geçilemez!")
     @NotBlank(message = "İsim Boş Geçilemez!")
     private String firstName;

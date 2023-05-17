@@ -9,6 +9,7 @@ namespace Application.Features.AdultSiblings.Messages
     public class CreateAdultSiblingsMessage
     {
         public string _id { get; set; }
+        public string AdultId { get; set; }
         public string GenderId { get; set; }
         public string EducationStatusId { get; set; }
         public string FirstName { get; set; }

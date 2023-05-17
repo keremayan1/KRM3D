@@ -8,9 +8,17 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class CreatedAdultQuestionAnswerDto {
+
+    @NotBlank
+    @NotNull
+    private String adultId;
+
+
     @NotBlank
     @NotNull
     private String questionId;
+
+
 
     @NotBlank(message = "Cevap Boş Olamaz!")
     @NotNull(message = "Cevap Boş Olamaz!")

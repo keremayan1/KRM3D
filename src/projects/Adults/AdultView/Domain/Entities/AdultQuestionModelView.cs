@@ -8,6 +8,8 @@ namespace Domain.Entities
 
         public string QuestionTitleId { get; set; }
         public string QuestionName { get; set; }
+        public virtual AdultQuestionTitleModelView? AdultQuestionTitle { get; set; }
+        public virtual List<AdultQuestionAnswerModelView>? AdultQuestionAnswers { get; set; }
         public AdultQuestionModelView()
         {
 

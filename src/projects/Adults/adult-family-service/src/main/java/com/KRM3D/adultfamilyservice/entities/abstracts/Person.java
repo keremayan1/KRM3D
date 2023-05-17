@@ -12,6 +12,7 @@ public abstract class Person {
 
     @Id
     private String _id;
+    private String adultId;
     private String firstName;
     private String lastName;
     private String educationStatusId;

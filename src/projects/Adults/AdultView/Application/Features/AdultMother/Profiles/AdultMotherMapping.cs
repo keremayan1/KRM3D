@@ -1,4 +1,5 @@
-﻿using Application.Features.AdultMother.Messages;
+﻿using Application.Features.AdultMother.DTOs;
+using Application.Features.AdultMother.Messages;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -16,6 +17,8 @@ namespace Application.Features.AdultMother.Profiles
             CreateMap<AdultMotherModelView, CreateAdultMotherMessage>().ReverseMap();
             CreateMap<AdultMotherModelView, UpdateAdultMotherMessage>().ReverseMap();
             CreateMap<AdultMotherModelView, DeleteAdultMotherMessage>().ReverseMap();
+
+            CreateMap<AdultMotherModelView, GetAdultMotherDto>().ForMember(x => x.EducationStatusName, opt => opt.MapFrom(x => x.AdultEducationStatus.EducationStatusName));
         }
     }
 }

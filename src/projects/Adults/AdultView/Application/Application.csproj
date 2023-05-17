@@ -17,14 +17,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\..\..\..\..\Code\Backend\keremayan1\3DKRM\src\corePackages\Core.Persistance\Core.Persistance.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\..\..\..\..\Code\Backend\keremayan1\3DKRM\src\corePackages\Core.Tools\Core.Tools.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Application\Core.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AdultFather\DTOs\" />
-    <Folder Include="Features\AdultMother\DTOs\" />
-    <Folder Include="Features\AdultSiblings\DTOs\" />
-    <Folder Include="Features\QuestionAnswer\DTOs\" />
     <Folder Include="Features\Question\DTOs\" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using Application.Features.QuestionAnswer.Messages;
+﻿using Application.Features.QuestionAnswer.DTOs;
+using Application.Features.QuestionAnswer.Messages;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -16,6 +17,11 @@ namespace Application.Features.QuestionAnswer.Profiles
             CreateMap<AdultQuestionAnswerModelView, CreateAdultQuestionAnswerMessage>().ReverseMap();
             CreateMap<AdultQuestionAnswerModelView, UpdateAdultQuestionAnswerMessage>().ReverseMap();
             CreateMap<AdultQuestionAnswerModelView, DeleteAdultQuestionAnswerMessage>().ReverseMap();
+
+            CreateMap<AdultQuestionAnswerModelView, GetListAdultQuestionAnswerDto>().ForMember(x => x.QuestionTitleName, opt => opt.MapFrom(x => x.AdultQuestion.AdultQuestionTitle.QuestionTitleName))
+                                                                                     .ForMember(x => x.QuestionName, opt => opt.MapFrom(x => x.AdultQuestion.QuestionName))
+                                                                                     .ForMember(x => x.Answer, opt => opt.MapFrom(x => x.QuestionAnswer))
+                                                                                     .ReverseMap();
 
         }
     }

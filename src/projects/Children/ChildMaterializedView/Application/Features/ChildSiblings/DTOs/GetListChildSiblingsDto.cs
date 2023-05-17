@@ -14,5 +14,6 @@ namespace Application.Features.ChildSiblings.DTOs
         public int Age { get; set; }
         public string EducationStatusName { get; set; }
         public string Job { get; set; }
+
     }
 }

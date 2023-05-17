@@ -25,6 +25,12 @@ namespace Domain.Entities
         public string PersonComesFromHere { get; set; }
         public string ReasonOfApplication { get; set; }
 
+        public virtual AdultGenderModelView? AdultGender { get; set; }
+        public virtual AdultFatherModelView? AdultFather { get; set; }
+        public virtual AdultMotherModelView? AdultMother { get; set; }
+        public virtual AdultMarriedStatusModelView? AdultMarriedStatus { get; set; }
+        public virtual List<AdultSiblingsModelView> AdultSiblings { get; set; }
+        public virtual List<AdultQuestionAnswerModelView> AdultQuestionAnswers { get; set; }
         public virtual AdultEducationStatusModelView? EducationStatus { get; set; }
         public AdultModelView()
         {

@@ -9,6 +9,7 @@ namespace Application.Features.QuestionAnswer.Messages
     public class CreateAdultQuestionAnswerMessage
     {
         public string _id { get; set; }
+        public string AdultId { get; set; }
         public string QuestionId { get; set; }
         public string QuestionAnswer { get; set; }
     }

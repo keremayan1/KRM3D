@@ -11,6 +11,9 @@ namespace Persistance.Configuration
             builder.ToTable("adult_question_title").HasKey(x => x._id);
             builder.Property(x => x._id).HasColumnName("id").ValueGeneratedNever();
             builder.Property(x => x.QuestionTitleName).HasColumnName("question_title_name");
+
+            builder.HasMany(x => x.AdultQuestions);
+
         }
     }
 }
