@@ -28,13 +28,13 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 
-class INJSoapFaultEx extends org.ksoap2.SoapFault
+class LSVSoapFaultEx extends org.ksoap2.SoapFault
 {
     public Object fault;
 }
 
 //If you have a compilation error here then you have to add a reference to ExKsoap2.jar to your project (you can find it in Libs folder in the generated zip file)
-public class INJExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.serialization.ExSoapSerializationEnvelope {
+public class LSVExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.serialization.ExSoapSerializationEnvelope {
     static HashMap< java.lang.String,java.lang.Class> classNames = new HashMap< java.lang.String, java.lang.Class>();
     public static String TAG="easyWSDL";
 
@@ -42,31 +42,31 @@ public class INJExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
     private static final String TYPE_LABEL = "type";
     public boolean enableLogging;
 
-    public static void setDateTimeConverter(INJDateTimeConverter converter)
+    public static void setDateTimeConverter(LSVDateTimeConverter converter)
     {
         if(converter==null)
         {
-            dateTimeConverter = new INJStandardDateTimeConverter();
+            dateTimeConverter = new LSVStandardDateTimeConverter();
         }
         dateTimeConverter=converter;
     }
 
-    public static INJDateTimeConverter getDateTimeConverter()
+    public static LSVDateTimeConverter getDateTimeConverter()
     {
         return dateTimeConverter;
     }
 
-    private static INJDateTimeConverter dateTimeConverter = new INJStandardDateTimeConverter();
+    private static LSVDateTimeConverter dateTimeConverter = new LSVStandardDateTimeConverter();
 
-    public INJExtendedSoapSerializationEnvelope() {
+    public LSVExtendedSoapSerializationEnvelope() {
         this(SoapEnvelope.VER11);
     }
 
-    public INJExtendedSoapSerializationEnvelope(int soapVersion) {
+    public LSVExtendedSoapSerializationEnvelope(int soapVersion) {
         super(soapVersion);
         implicitTypes = true;
         setAddAdornments(false);
-        new INJMarshalGuid().register(this);
+        new LSVMarshalGuid().register(this);
         new MarshalFloat().register(this);
     }
 
@@ -120,7 +120,7 @@ public class INJExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
         if (!type.multiRef && qName[2] == null )
         {
             if (!implicitTypes || (obj.getClass() != type.type && !(obj instanceof Vector ) && type.type!=java.lang.String.class  )) {
-                java.lang.String xmlName=INJHelper.getKeyByValue(classNames,obj.getClass());
+                java.lang.String xmlName=LSVHelper.getKeyByValue(classNames,obj.getClass());
                 if(xmlName!=null) {
                     java.lang.String[] parts = xmlName.split("\\^\\^");
                     java.lang.String prefix = writer.getPrefix(parts[0], true);
@@ -207,7 +207,7 @@ public class INJExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
     }
     private Object createObject(Object soap, Class cl) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Object obj=cl.newInstance();
-        Method ctor = obj.getClass().getMethod("loadFromSoap",Object.class,INJExtendedSoapSerializationEnvelope.class);
+        Method ctor = obj.getClass().getMethod("loadFromSoap",Object.class,LSVExtendedSoapSerializationEnvelope.class);
         ctor.invoke(obj,soap,this);
         return obj;
     }
@@ -326,7 +326,7 @@ public class INJExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
         {
             return "boolean";
         }
-        java.lang.String xmlName=INJHelper.getKeyByValue(classNames,obj);
+        java.lang.String xmlName=LSVHelper.getKeyByValue(classNames,obj);
         if(xmlName==null)
         {
             return obj;

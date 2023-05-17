@@ -1,0 +1,3 @@
+
+Docker all none images from Image list
+for /f %x in ('docker images -f "dangling=true" -q') do docker rmi %x

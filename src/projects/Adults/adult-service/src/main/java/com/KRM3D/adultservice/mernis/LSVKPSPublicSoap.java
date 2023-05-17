@@ -22,13 +22,13 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class INJKPSPublicSoap
+public class LSVKPSPublicSoap
 {
-    interface INJIWcfMethod
+    interface LSVIWcfMethod
     {
-        INJExtendedSoapSerializationEnvelope CreateSoapEnvelope() throws java.lang.Exception;
+        LSVExtendedSoapSerializationEnvelope CreateSoapEnvelope() throws java.lang.Exception;
 
-        java.lang.Object ProcessResult(INJExtendedSoapSerializationEnvelope __envelope,java.lang.Object result) throws java.lang.Exception;
+        java.lang.Object ProcessResult(LSVExtendedSoapSerializationEnvelope __envelope,java.lang.Object result) throws java.lang.Exception;
     }
 
     String url="https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx";
@@ -39,14 +39,14 @@ public class INJKPSPublicSoap
     public boolean enableLogging;
 
 
-    public INJKPSPublicSoap(){}
+    public LSVKPSPublicSoap(){}
 
-    public INJKPSPublicSoap(String url)
+    public LSVKPSPublicSoap(String url)
     {
         this.url = url;
     }
 
-    public INJKPSPublicSoap(String url,int timeOut)
+    public LSVKPSPublicSoap(String url,int timeOut)
     {
         this.url = url;
         this.timeOut=timeOut;
@@ -79,15 +79,15 @@ public class INJKPSPublicSoap
         return null;
     }
 
-    protected INJExtendedSoapSerializationEnvelope createEnvelope()
+    protected LSVExtendedSoapSerializationEnvelope createEnvelope()
     {
-        INJExtendedSoapSerializationEnvelope envelope= new INJExtendedSoapSerializationEnvelope(INJExtendedSoapSerializationEnvelope.VER11);
+        LSVExtendedSoapSerializationEnvelope envelope= new LSVExtendedSoapSerializationEnvelope(LSVExtendedSoapSerializationEnvelope.VER11);
         envelope.enableLogging = enableLogging;
     
         return envelope;
     }
 
-    protected java.util.List sendRequest(String methodName,INJExtendedSoapSerializationEnvelope envelope,org.ksoap2.transport.Transport transport ,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile )throws java.lang.Exception
+    protected java.util.List sendRequest(String methodName,LSVExtendedSoapSerializationEnvelope envelope,org.ksoap2.transport.Transport transport ,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile )throws java.lang.Exception
     {
         if(transport instanceof com.easywsdl.exksoap2.transport.AdvancedHttpTransportSE )
         {
@@ -99,7 +99,7 @@ public class INJKPSPublicSoap
         }
     }
 
-    java.lang.Object getResult(java.lang.Class destObj,java.lang.Object source,String resultName,INJExtendedSoapSerializationEnvelope __envelope) throws java.lang.Exception
+    java.lang.Object getResult(java.lang.Class destObj,java.lang.Object source,String resultName,LSVExtendedSoapSerializationEnvelope __envelope) throws java.lang.Exception
     {
         if(source==null)
         {
@@ -143,11 +143,11 @@ public class INJKPSPublicSoap
     public Boolean TCKimlikNoDogrula(final Long TCKimlikNo,final String Ad,final String Soyad,final Integer DogumYili) throws java.lang.Exception
     {
         com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile __profile = new com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile();
-        return (Boolean)execute(new INJIWcfMethod()
+        return (Boolean)execute(new LSVIWcfMethod()
         {
             @Override
-            public INJExtendedSoapSerializationEnvelope CreateSoapEnvelope(){
-                INJExtendedSoapSerializationEnvelope __envelope = createEnvelope();
+            public LSVExtendedSoapSerializationEnvelope CreateSoapEnvelope(){
+                LSVExtendedSoapSerializationEnvelope __envelope = createEnvelope();
                 SoapObject __soapReq = new SoapObject("http://tckimlik.nvi.gov.tr/WS", "TCKimlikNoDogrula");
                 __envelope.setOutputSoapObject(__soapReq);
                 
@@ -180,7 +180,7 @@ public class INJKPSPublicSoap
             }
             
             @Override
-            public java.lang.Object ProcessResult(INJExtendedSoapSerializationEnvelope __envelope,java.lang.Object __result)throws java.lang.Exception {
+            public java.lang.Object ProcessResult(LSVExtendedSoapSerializationEnvelope __envelope,java.lang.Object __result)throws java.lang.Exception {
                 SoapObject __soap=(SoapObject)__result;
                 java.lang.Object obj = __soap.getProperty("TCKimlikNoDogrulaResult");        
                 if (obj instanceof SoapPrimitive)
@@ -196,11 +196,11 @@ public class INJKPSPublicSoap
         },"http://tckimlik.nvi.gov.tr/WS/TCKimlikNoDogrula",__profile);
     }
 
-    protected java.lang.Object execute(INJIWcfMethod wcfMethod,String methodName,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile) throws java.lang.Exception
+    protected java.lang.Object execute(LSVIWcfMethod wcfMethod,String methodName,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile) throws java.lang.Exception
     {
         org.ksoap2.transport.Transport __httpTransport=createTransport();
         __httpTransport.debug=enableLogging;
-        INJExtendedSoapSerializationEnvelope __envelope=wcfMethod.CreateSoapEnvelope();
+        LSVExtendedSoapSerializationEnvelope __envelope=wcfMethod.CreateSoapEnvelope();
         try
         {
             sendRequest(methodName, __envelope, __httpTransport,profile);
@@ -226,7 +226,7 @@ public class INJKPSPublicSoap
     }
 
 
-    protected java.lang.Exception convertToException(org.ksoap2.SoapFault fault,INJExtendedSoapSerializationEnvelope envelope)
+    protected java.lang.Exception convertToException(org.ksoap2.SoapFault fault,LSVExtendedSoapSerializationEnvelope envelope)
     {
         org.ksoap2.SoapFault newException = fault;
         return newException;

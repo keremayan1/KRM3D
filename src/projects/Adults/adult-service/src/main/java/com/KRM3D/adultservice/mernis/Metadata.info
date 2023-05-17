@@ -4,10 +4,10 @@
     <Version>7.0.2.0</Version>
     <AccountType>Basic</AccountType>
     <LibrariesFolder>easywsdl</LibrariesFolder>
-    <MainClass>INJKPSPublicSoap</MainClass>
+    <MainClass>LSVKPSPublicSoap</MainClass>
   </Info>
   <Settings>
-    <Url>https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx</Url>
+    <Url>https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL</Url>
     <ClassPrefix/>
     <PackageName>com.KRM3D.adultservice.mernis</PackageName>
     <AddDocumentation>false</AddDocumentation>
@@ -29,21 +29,21 @@
     <DetectDictionaries>false</DetectDictionaries>
   </Settings>
   <Files>
-    <File>docs/Html/INJKPSPublicSoap.html</File>
-    <File>docs/Html/INJKPSPublicSoap12.html</File>
-    <File>docs/Html/INJKPSPublicSoap12_methods.html</File>
-    <File>docs/Html/INJKPSPublicSoap_methods.html</File>
+    <File>docs/Html/LSVKPSPublicSoap.html</File>
+    <File>docs/Html/LSVKPSPublicSoap12.html</File>
+    <File>docs/Html/LSVKPSPublicSoap12_methods.html</File>
+    <File>docs/Html/LSVKPSPublicSoap_methods.html</File>
     <File>docs/Html/MTOMTransfer.html</File>
     <File>docs/Html/Tips.html</File>
     <File>docs/Index.html</File>
     <File>docs/Styles/Blueprint_Styles/Style.css</File>
-    <File>INJDateTimeConverter.java</File>
-    <File>INJExtendedSoapSerializationEnvelope.java</File>
-    <File>INJHelper.java</File>
-    <File>INJKPSPublicSoap.java</File>
-    <File>INJKPSPublicSoap12.java</File>
-    <File>INJMarshalGuid.java</File>
-    <File>INJStandardDateTimeConverter.java</File>
+    <File>LSVDateTimeConverter.java</File>
+    <File>LSVExtendedSoapSerializationEnvelope.java</File>
+    <File>LSVHelper.java</File>
+    <File>LSVKPSPublicSoap.java</File>
+    <File>LSVKPSPublicSoap12.java</File>
+    <File>LSVMarshalGuid.java</File>
+    <File>LSVStandardDateTimeConverter.java</File>
   </Files>
   <Libraries>
     <File>ExKsoap2-1.0.4.0.jar</File>

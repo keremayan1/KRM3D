@@ -15,7 +15,7 @@ import java.util.Locale;
 
 
 
-public class INJStandardDateTimeConverter implements INJDateTimeConverter
+public class LSVStandardDateTimeConverter implements LSVDateTimeConverter
 {
     public java.util.TimeZone TimeZone=java.util.TimeZone.getTimeZone("UTC");
 

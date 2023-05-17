@@ -12,7 +12,7 @@ package com.KRM3D.adultservice.mernis;
 import java.util.Date;
 
 
-public interface INJDateTimeConverter
+public interface LSVDateTimeConverter
 {
     java.util.Date convertDateTime(String strDate);
     java.util.Date convertTime(String strDate);
