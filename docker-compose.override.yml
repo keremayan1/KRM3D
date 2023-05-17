@@ -67,6 +67,24 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Password12*
+  adultdb:
+    container_name: AdultDb
+    restart: always
+    ports:
+      - "27030:27017"
+    volumes:
+      - adultdb_volume:/data/db    
+  adultviewdb:
+    container_name: AdultViewDb
+    restart: always    
+    user: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - adultview_volume:/var/lib/mysql  
+    environment:
+     - MYSQL_ROOT_PASSWORD=Password12*
+     - MYSQL_DATABASE=adult-view
   rabbitmq:
     container_name: rabbitmq
     restart: always
@@ -83,7 +101,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMQUrl=rabbitmq
       - MongoDbConnectionSettings:ConnectionString=mongodb://childdb:27017
-
     depends_on:
       - childdb
     ports:
@@ -177,4 +194,25 @@ services:
      ports:
       - 8002:8002
      depends_on:
-     - questiondb    
+     - questiondb
+  adult.api:
+    container_name: AdultViewAPI
+    restart: always
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.data.mongodb.uri=mongodb://adultdb:27030
+    ports:
+     - 9000:9000
+    depends_on:
+     - adultdb           
+  adultview.api:
+   container_name: AdultViewAPI
+   restart: always
+   environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - RabbitMQUrl=rabbitmq
+    - "ConnectionStrings:MySQLConnectionString=Server=adultviewdb,3306;Database=adult-view;User=root;Password=Password12*"
+   depends_on:
+    - adultviewdb
+   ports:
+    - "5185:80"  

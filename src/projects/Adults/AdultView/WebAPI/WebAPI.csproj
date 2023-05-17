@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\corePackages\Core.Shared\Core.Shared.csproj" />
-    <ProjectReference Include="..\..\Persistance\Persistance.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Shared\Core.Shared.csproj" />
+    <ProjectReference Include="..\Persistance\Persistance.csproj" />
   </ItemGroup>
 
 </Project>

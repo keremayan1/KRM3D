@@ -18,54 +18,67 @@ services:
     image: mongo
   childmaterializedviewdb:
     image: mcr.microsoft.com/mssql/server:2022-latest  
+  adultdb:
+    image: mongo  
+  adultviewdb:
+    image: mysql
   rabbitmq:
     image: rabbitmq:3-management
   child.api:
     image: ${DOCKER_REGISTRY-}childapi
     build: 
       context: .
-      dockerfile: src/projects/Child/Child.WebAPI/Dockerfile
+      dockerfile: src/projects/Children/Child/Child.WebAPI/Dockerfile
   childmaterializedview.api:
     image: childmaterializedview_api_image
     build: 
       context: .
-      dockerfile: src/projects/ChildMaterializedView/WebAPI/Dockerfile
+      dockerfile: src/projects/Children/ChildMaterializedView/WebAPI/Dockerfile
   gender.api:
     image: gender_api_image
     build:
       context: .
-      dockerfile: src/projects/Gender/Gender.WebAPI/Dockerfile    
+      dockerfile: src/projects/Children/Gender/Gender.WebAPI/Dockerfile    
   childparents.api:
      image: ${DOCKER_REGISTRY-}childparents.api
      build:
       context: .
-      dockerfile: src/projects/ChildParents/ChildParents.WebAPI/Dockerfile
+      dockerfile: src/projects/Children/ChildParents/ChildParents.WebAPI/Dockerfile
   questiontitle.api:
     image: ${DOCKER_REGISTRY-}questiontitle.api
     build: 
       context: .
-      dockerfile: src/projects/QuestionTitle/QuestionTitle.WebAPI/Dockerfile
+      dockerfile: src/projects/Children/QuestionTitle/QuestionTitle.WebAPI/Dockerfile
   questionanswer.api:
     image: ${DOCKER_REGISTRY-}questionanswer.api
     build: 
       context: .
-      dockerfile: src/projects/QuestionAnswer/QuestionAnswer.WebAPI/Dockerfile
+      dockerfile: src/projects/Children/QuestionAnswer/QuestionAnswer.WebAPI/Dockerfile
   childsiblings.api:
     image: ${DOCKER_REGISTRY-}childsiblings.api
     build: 
       context: .
-      dockerfile: src\projects\childSiblings\Dockerfile
+      dockerfile: src\projects\Children\childSiblings\Dockerfile
   educationstatus.api:
     image: ${DOCKER_REGISTRY-}educationstatus.api
     build: 
       context: .
-      dockerfile: src\projects\educationStatus\Dockerfile
+      dockerfile: src\projects\Children\educationStatus\Dockerfile
   question.api:
      image: ${DOCKER_REGISTRY-}question.api    
      build:
       context: .
-      dockerfile: src\projects\question\Dockerfile
-    
+      dockerfile: src\projects\Children\question\Dockerfile
+  adult.api:
+     image: ${DOCKER_REGISTRY-}adult.api    
+     build:
+      context: .
+      dockerfile: src\projects\Adults\adult-service\Dockerfile    
+  adultview.api:
+    image: ${DOCKER_REGISTRY-}adultview_api_image
+    build:
+     context: .
+     dockerfile: src/projects/Adults/AdultView/WebAPI/Dockerfile    
 volumes:
   childdb_volume:
   childparentsdb_volume:  
@@ -75,4 +88,6 @@ volumes:
   questionanswerdb_volume:
   questiontitledb_volume:
   educationstatusdb_volume:
-  childmaterializedview_volume:  
+  childmaterializedview_volume:
+  adultdb_volume:
+  adultview_volume:  

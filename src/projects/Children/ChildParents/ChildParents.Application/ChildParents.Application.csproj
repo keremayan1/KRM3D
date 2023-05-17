@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
-    <ProjectReference Include="..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
     <ProjectReference Include="..\ChildParents.Domain\ChildParents.Domain.csproj" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@ using Persistance.Contexts;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20230517183823_AddAll")]
+    [Migration("20230517202114_AddAll")]
     partial class AddAll
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

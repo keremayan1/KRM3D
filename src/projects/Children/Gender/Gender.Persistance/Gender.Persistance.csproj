@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
     <ProjectReference Include="..\Gender.Application\Gender.Application.csproj" />
     <ProjectReference Include="..\Gender.Domain\Gender.Domain.csproj" />
   </ItemGroup>

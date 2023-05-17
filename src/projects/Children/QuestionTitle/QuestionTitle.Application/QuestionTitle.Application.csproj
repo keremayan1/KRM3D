@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
-    <ProjectReference Include="..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Persistance\Core.Persistance.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
     <ProjectReference Include="..\QuestionTitle.Domain\QuestionTitle.Domain.csproj" />
   </ItemGroup>
 

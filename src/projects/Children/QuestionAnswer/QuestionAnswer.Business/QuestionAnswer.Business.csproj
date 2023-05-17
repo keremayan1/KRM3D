@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
+    <ProjectReference Include="..\..\..\..\corePackages\Core.Tools\Core.Tools.csproj" />
     <ProjectReference Include="..\QuestionAnswer.DataAccess\QuestionAnswer.DataAccess.csproj" />
     <ProjectReference Include="..\QuestionAnswer.Entities\QuestionAnswer.Entities.csproj" />
   </ItemGroup>
