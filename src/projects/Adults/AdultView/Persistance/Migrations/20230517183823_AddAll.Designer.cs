@@ -11,7 +11,7 @@ using Persistance.Contexts;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20230517183306_AddAll")]
+    [Migration("20230517183823_AddAll")]
     partial class AddAll
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -285,7 +285,8 @@ namespace Persistance.Migrations
 
                     b.Property<string>("AdultId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("adult_id");
 
                     b.Property<string>("QuestionAnswer")
                         .IsRequired()

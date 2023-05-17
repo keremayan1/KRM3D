@@ -295,7 +295,7 @@ namespace Persistance.Migrations
                 {
                     id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AdultId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    adult_id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     question_id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -312,8 +312,8 @@ namespace Persistance.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_adult_question_answer_adults_AdultId",
-                        column: x => x.AdultId,
+                        name: "FK_adult_question_answer_adults_adult_id",
+                        column: x => x.adult_id,
                         principalTable: "adults",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -348,9 +348,9 @@ namespace Persistance.Migrations
                 column: "question_title_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_adult_question_answer_AdultId",
+                name: "IX_adult_question_answer_adult_id",
                 table: "adult_question_answer",
-                column: "AdultId");
+                column: "adult_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_adult_question_answer_question_id",

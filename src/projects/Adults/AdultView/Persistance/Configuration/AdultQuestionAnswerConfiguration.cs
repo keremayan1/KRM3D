@@ -10,6 +10,7 @@ namespace Persistance.Configuration
         {
             builder.ToTable("adult_question_answer").HasKey(x => x._id);
             builder.Property(x => x._id).HasColumnName("id").ValueGeneratedNever();
+            builder.Property(x => x.AdultId).HasColumnName("adult_id");
             builder.Property(x => x.QuestionId).HasColumnName("question_id");
             builder.Property(x => x.QuestionAnswer).HasColumnName("question_answer");
 
