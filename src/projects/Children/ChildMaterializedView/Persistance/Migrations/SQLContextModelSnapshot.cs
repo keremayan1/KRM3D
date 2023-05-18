@@ -167,8 +167,9 @@ namespace Persistance.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("Id");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int")
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Age");
 
                     b.Property<string>("ChildId")

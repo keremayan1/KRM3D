@@ -1,3 +1,6 @@
+Docker update 1 container from docker-compose
+docker-compose up --build childmaterializedview.api
+
 
 Docker all none images from Image list
 for /f %x in ('docker images -f "dangling=true" -q') do docker rmi %x

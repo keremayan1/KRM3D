@@ -27,14 +27,14 @@ public class SiblingsController {
         return  ResponseEntity.ok(response);
     }
     @PutMapping(value = "update")
-    public ResponseEntity<UpdatedSiblingsDto> add(@RequestBody UpdatedSiblingsDto adultQuestionAnswer){
+    public ResponseEntity<UpdatedSiblingsDto> update(@RequestBody UpdatedSiblingsDto adultQuestionAnswer){
         var result = this.siblingsService.update(adultQuestionAnswer);
         return  ResponseEntity.ok(result);
     }
 
     @DeleteMapping(value = "delete/{id}")
     @ResponseBody
-    public ResponseEntity<String> add(@PathVariable String id){
+    public ResponseEntity<String> delete(@PathVariable String id){
         var result = this.siblingsService.delete(id);
         return  ResponseEntity.ok(result);
     }

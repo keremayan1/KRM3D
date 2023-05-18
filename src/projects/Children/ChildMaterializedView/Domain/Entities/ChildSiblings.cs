@@ -10,7 +10,7 @@ namespace Domain.Entities
         public string GenderId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string EducationStatusId { get; set; }
         public string Job { get; set; }
         public virtual Child? Child { get; set; }
@@ -21,7 +21,7 @@ namespace Domain.Entities
 
         }
 
-        public ChildSiblings(string id, string childId, string firstName, string lastName,string genderId, int age, string educationStatusId, string job):this()
+        public ChildSiblings(string id, string childId, string firstName, string lastName,string genderId, string age, string educationStatusId, string job):this()
         {
             _id = id;
             ChildId = childId;

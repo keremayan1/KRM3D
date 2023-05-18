@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistance.Migrations
 {
-    public partial class addAll : Migration
+    public partial class AddAll : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -155,7 +155,7 @@ namespace Persistance.Migrations
                     GenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
+                    Age = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EducationStatusId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Job = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

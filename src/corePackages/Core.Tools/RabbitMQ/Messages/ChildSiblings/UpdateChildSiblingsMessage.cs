@@ -8,7 +8,7 @@
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string EducationStatusId { get; set; }
         public string Job { get; set; }
     }

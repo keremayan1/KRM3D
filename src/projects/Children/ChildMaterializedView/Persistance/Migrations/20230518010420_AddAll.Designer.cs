@@ -12,8 +12,8 @@ using Persistance.Contexts;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20230110050334_addAll")]
-    partial class addAll
+    [Migration("20230518010420_AddAll")]
+    partial class AddAll
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,8 +169,9 @@ namespace Persistance.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("Id");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int")
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Age");
 
                     b.Property<string>("ChildId")
