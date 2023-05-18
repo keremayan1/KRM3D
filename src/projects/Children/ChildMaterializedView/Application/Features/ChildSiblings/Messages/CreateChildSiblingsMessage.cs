@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Tools.RabbitMQ.Messages.ChildSiblings
+namespace Application.Features.ChildSiblings.Messages
 {
     public class CreateChildSiblingsMessage
     {

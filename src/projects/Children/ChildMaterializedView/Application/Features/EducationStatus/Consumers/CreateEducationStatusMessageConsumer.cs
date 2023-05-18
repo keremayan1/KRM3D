@@ -1,6 +1,7 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.EducationStatus.Messages;
+using Application.Services.Repositories;
 using AutoMapper;
-using Core.Tools.RabbitMQ.Messages.EducationStatus;
+
 using MassTransit;
 using EducationStatuses = Domain.Entities.EducationStatusReadModel;
 namespace Application.Features.EducationStatus.Consumers

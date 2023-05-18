@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using Core.Tools.RabbitMQ.Messages.EducationStatus;
+﻿using Application.Features.EducationStatus.Messages;
+using AutoMapper;
+
 using EducationStatuses = Domain.Entities.EducationStatusReadModel;
 namespace Application.Features.EducationStatus.Profiles
 {

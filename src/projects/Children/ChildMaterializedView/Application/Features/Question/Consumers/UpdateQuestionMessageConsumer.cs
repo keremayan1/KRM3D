@@ -1,6 +1,6 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.Question.Messages;
+using Application.Services.Repositories;
 using AutoMapper;
-using Core.Tools.RabbitMQ.Messages.Question;
 using MassTransit;
 using Questions = Domain.Entities.Question;
 namespace Application.Features.Question.Consumers

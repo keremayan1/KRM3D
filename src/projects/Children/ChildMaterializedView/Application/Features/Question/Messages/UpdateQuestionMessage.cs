@@ -1,4 +1,4 @@
-﻿namespace Core.Tools.RabbitMQ.Messages.Question
+﻿namespace Application.Features.Question.Messages
 {
     public class UpdateQuestionMessage
     {

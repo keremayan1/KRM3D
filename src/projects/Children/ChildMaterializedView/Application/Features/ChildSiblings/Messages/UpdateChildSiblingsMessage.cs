@@ -1,4 +1,4 @@
-﻿namespace Core.Tools.RabbitMQ.Messages.ChildSiblings
+﻿namespace Application.Features.ChildSiblings.Messages
 {
     public class UpdateChildSiblingsMessage
     {

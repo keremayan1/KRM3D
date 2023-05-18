@@ -1,4 +1,4 @@
-﻿namespace Core.Tools.RabbitMQ.Messages.EducationStatus
+﻿namespace Application.Features.EducationStatus.Messages
 {
     public class DeleteEducationStatusMessage
     {
