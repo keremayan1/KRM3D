@@ -23,6 +23,7 @@ public class AdultsController {
     @PostMapping(value = "add")
     public ResponseEntity<CreatedAdultDto> add(@RequestBody @Valid CreatedAdultDto adult) throws Exception {
         var result = this.adultService.add(adult);
+
         return  ResponseEntity.ok(result);
     }
     @PutMapping(value = "update")

@@ -186,6 +186,23 @@ services:
     ports:
       - "5135:80"
 
+  adultservicedb:
+    container_name: AdultServiceDb
+    restart: always
+    ports:
+      - "27030:27017"
+    volumes:
+      - adultservice_volume:/data/db
+  adultservice.api:
+    container_name: AdultServiceAPI
+    restart: always
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.data.mongodb.uri=mongodb://adultservicedb:27017
+    ports:
+      - 9000:9000
+    depends_on:
+      - adultservicedb 
 
   adultfamilyservicedb:
     container_name: AdultFamilyServiceDb

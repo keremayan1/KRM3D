@@ -75,8 +75,13 @@ services:
       context: .
       dockerfile: src/projects/Children/ChildMaterializedView/WebAPI/Dockerfile
 
-  adultdb:
+  adultservicedb:
     image: mongo
+  adultservice.api:
+    image: ${DOCKER_REGISTRY-}adult_service_api_image  
+    build: 
+     context: .
+     dockerfile: src\projects\Adults\adult-service\Dockerfile  
   
   adultfamilyservicedb:
     image: mongo 
@@ -140,6 +145,8 @@ volumes:
   questiontitledb_volume:
   educationstatusdb_volume:
   childmaterializedview_volume:
+  
+  adultservice_volume:
   adultfamilyservice_volume:
   adultquestion_volume:
   adultquestiontitle_volume:
